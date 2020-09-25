@@ -56,7 +56,7 @@ assign processUnusedTags            = false # %processUnusedTags% | Set to true 
 
 ---context:way   # following code refers to way-tags
 
-assign any_cycleroute or route_bicycle_icn=yes or route_bicycle_ncn=yes or route_bicycle_rcn=yes route_bicycle_lcn=yes
+assign any_cycleroute or route_bicycle_icn=yes|proposed or route_bicycle_ncn=yes|proposed or route_bicycle_rcn=yes|proposed route_bicycle_lcn=yes|proposed
 assign nodeaccessgranted or any_cycleroute lcn=yes
 
 assign ispaved or surface=paved or surface=asphalt or surface=concrete or surface=paving_stones surface=sett
