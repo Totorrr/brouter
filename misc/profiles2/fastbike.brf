@@ -115,7 +115,7 @@ assign accesspenalty
        switch bikeaccess
               0
               switch footaccess
-                     5
+                     4
                      switch any_cycleroute
                             15
                             10000
