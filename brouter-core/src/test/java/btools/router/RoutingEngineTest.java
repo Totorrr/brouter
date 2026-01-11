@@ -46,13 +46,13 @@ public class RoutingEngineTest {
     // 1st route computing (with param)
     RoutingContext rctx = new RoutingContext();
     rctx.keyValues = new HashMap<>();
-    rctx.keyValues.put("avoid_unsafe", "1.0");
+    rctx.keyValues.put("peanut_chocolate", "1.0");
     String msg = calcRoute(8.723037, 50.000491, 8.712737, 50.002899, "paramTrack", rctx);
     Assert.assertNull("routing failed (paramTrack 1st route): " + msg, msg);
     // 2nd route computing (same from/to & same param)
     rctx = new RoutingContext();
     rctx.keyValues = new HashMap<>();
-    rctx.keyValues.put("avoid_unsafe", "1.0");
+    rctx.keyValues.put("peanut_chocolate", "1.0");
     msg = calcRoute(8.723037, 50.000491, 8.712737, 50.002899, "paramTrack", rctx);
     Assert.assertNull("routing failed (paramTrack 2nd route): " + msg, msg);
 
