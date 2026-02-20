@@ -12,6 +12,9 @@ assign   validForFoot        1
 
 assign use_proposed_cycleroutes = false  # %use_proposed_cycleroutes% | Set to true to consider proposed and regular cycleroutes as equals | boolean
 
+assign allow_private_ways = false  # %allow_private_ways% | Set to true to allow using private ways | boolean
+assign allow_private_nodes = false  # %allow_private_nodes% | Set to true to allow passing private nodes | boolean
+
 ---context:way   # following code refers to way-tags
 
 assign any_cycleroute
@@ -40,7 +43,7 @@ assign defaultaccess
                     else if highway=motorway|motorway_link then false
                     else true
               )
-              switch or access=private access=no
+              switch or and not allow_private_ways access=private access=no
                      false
                      true
 
@@ -53,7 +56,7 @@ assign bikeaccess
                  true
                  switch vehicle=
                         ( if highway=footway then false else defaultaccess )
-                        not vehicle=private|no
+                        not or and not allow_private_ways vehicle=private vehicle=no
               not or bicycle=private or bicycle=no or bicycle=dismount bicycle=use_sidepath
 
 #
@@ -63,7 +66,7 @@ assign footaccess
        or bicycle=dismount
           switch foot=
                  defaultaccess
-                 not or foot=private or foot=no foot=use_sidepath
+                 not or and not allow_private_ways foot=private or foot=no foot=use_sidepath
 
 assign accesspenalty switch or bikeaccess footaccess 0 100000
 
@@ -128,7 +131,7 @@ assign dummyUsage = smoothness=
 assign defaultaccess
        switch access=
               1 # add default barrier restrictions here!
-              switch or access=private access=no
+              switch or and not allow_private_nodes access=private access=no
                      0
                      1
 
@@ -137,7 +140,7 @@ assign bikeaccess
           switch bicycle=
                  switch vehicle=
                         defaultaccess
-                        switch or vehicle=private vehicle=no
+                        switch or and not allow_private_nodes vehicle=private vehicle=no
                                0
                                1
                  switch or bicycle=private or bicycle=no bicycle=dismount
@@ -148,7 +151,7 @@ assign footaccess
        or bicycle=dismount
           switch foot=
                  defaultaccess
-                 switch or foot=private foot=no
+                 switch or and not allow_private_nodes foot=private foot=no
                         0
                         1
 
